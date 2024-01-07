@@ -4,6 +4,9 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { DirectiveLocation, GraphQLDirective, GraphQLSchema } from 'graphql';
 import { join } from 'path';
 import { BooksResolver } from './books.resolver';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { BooksEntity } from './datastore/books.entity';
+import { BooksRepository } from './datastore/books.repository';
 
 @Module({
   imports: [
@@ -21,6 +24,7 @@ import { BooksResolver } from './books.resolver';
         ],
       },
     }),
+    TypeOrmModule.forFeature([BooksEntity, BooksRepository]),
   ],
   providers: [BooksResolver],
 })
