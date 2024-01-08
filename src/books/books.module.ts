@@ -7,6 +7,7 @@ import { BooksResolver } from './books.resolver';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BooksEntity } from './datastore/books.entity';
 import { BooksRepository } from './datastore/books.repository';
+import { BooksService } from './books.service';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { BooksRepository } from './datastore/books.repository';
     }),
     TypeOrmModule.forFeature([BooksEntity, BooksRepository]),
   ],
-  providers: [BooksResolver],
+
+  providers: [BooksResolver, BooksService],
 })
 export class BooksModule {}

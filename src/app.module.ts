@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './books/books.controller';
-import { AppService } from './books/books.service';
 import { BooksModule } from './books/books.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { BooksEntity } from './books/datastore/books.entity';
@@ -20,8 +19,6 @@ import { DataSource } from 'typeorm';
       synchronize: true,
     }),
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {
   constructor(private dataSource: DataSource) {}
