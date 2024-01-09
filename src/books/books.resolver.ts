@@ -1,8 +1,8 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { Book } from './dto/types';
+import { Book } from './dto/graphql/types';
 import { BooksService } from './books.service';
-import { MapDomainToDto } from './map-domain-to-dto';
-import { CreateBookInput, UpdateBookInput } from './dto/inputs';
+import { MapDomainToGqlDto } from './mappers/map-domain-to-gql-dto';
+import { CreateBookInput, UpdateBookInput } from './dto/graphql/inputs';
 
 @Resolver(() => Book)
 export class BooksResolver {
@@ -11,19 +11,19 @@ export class BooksResolver {
   @Query(() => Book)
   async book(@Args('id') id: string): Promise<Book> {
     const res = await this.booksService.getOneById(id);
-    return MapDomainToDto(res);
+    return MapDomainToGqlDto(res);
   }
 
   @Query(() => [Book])
   async books(): Promise<Book[]> {
     const res = await this.booksService.getAll();
-    return res.map(MapDomainToDto);
+    return res.map(MapDomainToGqlDto);
   }
 
   @Mutation(() => Book)
   async createBook(@Args('input') input: CreateBookInput): Promise<Book> {
     const res = await this.booksService.create(input);
-    return MapDomainToDto(res);
+    return MapDomainToGqlDto(res);
   }
 
   @Mutation(() => Boolean)

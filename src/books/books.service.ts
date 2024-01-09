@@ -4,7 +4,7 @@ import { BooksEntity } from './datastore/books.entity';
 import { Repository } from 'typeorm';
 import { MapEntityToDomain } from './datastore/entity-to-domain.mapper';
 import { BookDomain } from './books.domain';
-import { CreateBookInput, UpdateBookInput } from './dto/inputs';
+import { CreateBookInput, UpdateBookInput } from './dto/graphql/inputs';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
