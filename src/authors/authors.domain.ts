@@ -1,5 +1,5 @@
 export interface AuthorDomain {
-  id: number;
+  id: string;
   name: string;
   email: string;
   birthDate: Date;

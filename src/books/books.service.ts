@@ -5,7 +5,6 @@ import { Repository } from 'typeorm';
 import { MapEntityToDomain } from './datastore/entity-to-domain.mapper';
 import { BookDomain } from './books.domain';
 import { CreateBookInput, UpdateBookInput } from './dto/graphql/inputs';
-import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
 export class BooksService {
@@ -27,7 +26,6 @@ export class BooksService {
 
   async create(book: CreateBookInput): Promise<BookDomain> {
     const bookToCreate = {
-      id: uuidv4(),
       title: book.title,
       genre: book.genre,
       description: book.description,
