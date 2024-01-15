@@ -4,6 +4,7 @@ import { AuthorEntity } from './datastore/authors.entity';
 import { Repository } from 'typeorm';
 import { MapEntityToDomain } from './datastore/entity-to-domain.mapper';
 import { AuthorDomain } from './authors.domain';
+import { CreateAuthorInput, UpdateAuthorInput } from './dto/graphql/inputs';
 
 @Injectable()
 export class AuthorsService {
@@ -22,12 +23,12 @@ export class AuthorsService {
     return MapEntityToDomain(res);
   }
 
-  async create(author: AuthorDomain): Promise<AuthorDomain> {
+  async create(author: CreateAuthorInput): Promise<AuthorDomain> {
     const res = await this.authorRepository.save(author);
     return MapEntityToDomain(res);
   }
 
-  async update(author: AuthorDomain): Promise<AuthorDomain> {
+  async update(author: UpdateAuthorInput): Promise<AuthorDomain> {
     const res = await this.authorRepository.save(author);
     return MapEntityToDomain(res);
   }
